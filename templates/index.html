@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>One Pixel Attack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/Test.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">One Pixel Attack</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-1 mymaincontainer">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card" style="border: none;">
+                    <div class="card-body">
+                        <h2 class="card-title" style="text-align: center;">One Pixel Attack</h2>
+                        <p class="lead text-justify text-muted">
+                            The One Pixel Attack is an adversarial technique that involves altering just a single pixel
+                            in an image to deceive deep learning models, particularly image classifiers, into making
+                            incorrect predictions. This attack highlights the vulnerability of neural networks to
+                            minimal input perturbations, emphasizing the need for more robust and secure machine
+                            learning systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-1 mymaincontainer">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card" style="border: none;">
+                    <div class="card-body">
+                        <h1>Select Image ID</h1>
+                        <form method="POST">
+                            <label for="image_id">Image ID:</label>
+                            <input type="number" id="image_id" name="image_id" required>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <div class="row">
+                            <div class="col d-flex flex-column justify-content-between">
+                                {% if image_path %}
+                                <div class="">
+                                    <img src="{{ image_path }}" alt="CIFAR-10 Image" class="img-fluid">
+                                </div>
+                                {% endif %}
+                                {% if class_name %}
+                                <p>This is a <strong>{{class_name}}</strong> in CIFAR-10 DataSet</p>
+                                <form action="/process_button" method="post">
+                                    <button type="submit" class="btn btn-primary">Attack</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                            <div class="col d-flex flex-column">
+                                {% if attack_image_path %}
+                                <div class="">
+                                    <img src="{{ attack_image_path }}" alt="CIFAR-10 Image" class="img-fluid">
+                                </div>
+                                {% endif %}
+                                {% if attack_image_class_name %}
+                                <p>This is predicted as <strong>{{attack_image_class_name}}</strong> in CIFAR-10 DataSet</p>
+                                {% endif %}
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/Test.js') }}"></script>
+</body>
+
+</html>
